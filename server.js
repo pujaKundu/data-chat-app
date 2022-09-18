@@ -1,3 +1,4 @@
+const data = require("./db.js");
 const auth = require("json-server-auth");
 const jsonServer = require("json-server");
 const express = require("express");
@@ -9,7 +10,7 @@ const io = require("socket.io")(server);
 
 global.io = io;
 
-const router = jsonServer.router("db.json");
+const router = jsonServer.router(data);
 
 // response middleware
 router.render = (req, res) => {
@@ -26,7 +27,6 @@ router.render = (req, res) => {
     });
   }
   //assignment part
-
   else if (path.includes("/messages") && method === "POST") {
     // emit socket event
     // emit socket event
